@@ -8,7 +8,7 @@ import Products from './Products/Products';
 function App() {
   return (
     <div>
-      <Header logotext="logo heres" />
+      <Header/>
       <Switch>
         <Route path="/products" component={Products} />
         <Route path="/cart" component={Cart} />

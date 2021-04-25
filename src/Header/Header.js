@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../../src/assets/img/logo.png';
 import * as classes from './Header.module.css';
 
@@ -12,10 +12,10 @@ function Header(props){
                         
                         <ul className={classes.links}>
                             <li>
-                                <Link to="/products" >Products</Link>
+                                <NavLink to="/products" >Products</NavLink>
                             </li>
                             <li>
-                                <Link to="/cart">Cart</Link>
+                                <NavLink to="/cart">Cart</NavLink>
                             </li>
                             <li>
                                 <a href="">About Us</a>
