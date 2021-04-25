@@ -36,13 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-.products{
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap; 
-  width: 100%;
-}
-.products li{
-  width: calc(100%/4);
-}

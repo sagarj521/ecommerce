@@ -14,7 +14,6 @@ function App() {
         <Route path="/cart" component={Cart} />
         {/* <Redirect from="/" to="/products"/> */}
       </Switch>
-      Home page
     </div>
   );
 }

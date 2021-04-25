@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
+import * as classes from './Products.module.css';
 
 class Products extends Component {
 
@@ -53,17 +54,18 @@ class Products extends Component {
         console.log('render')
         return (
                 <React.Fragment>
-                    <ul className="products">
+                    <div className={classes.cardsList}>  
                     {this.state.products?this.state.products.map((prod)=>{
-                        return <li key={prod.cakeid} >
-                                        <img src={prod.image} width="200px" height="200px"/>
-                                        <div>
-                                            <h2>{prod.name}</h2>
-                                            <p>{prod.price}</p>
-                                        </div> 
-                                </li>                                
-                    }): null}
-                    </ul>  
+                        return <div className={classes.card} key={prod.cakeid}>
+                                    <div className={classes.card_image}>
+                                        <img src={prod.image} /> 
+                                    </div>
+                                    <div className={classes.card_title}>                            
+                                        <p>{prod.name}</p>
+                                    </div>
+                                </div>        
+                    }): null}  
+                    </div>
                 </React.Fragment>
                 ) 
     }
