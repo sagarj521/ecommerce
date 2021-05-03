@@ -4,8 +4,13 @@ import logo from '../../src/assets/img/logo.png';
 import * as classes from './Header.module.css';
 
 function Header(props){
+      
+
+    const isLoggedIn = true;
+    
     return (<React.Fragment>
-                <div className={classes.header}>                    
+            {
+            isLoggedIn?<div className={classes.header}>
                         <Link to="/">
                             <img src={logo} height="60px" width="60px" />
                         </Link>
@@ -16,15 +21,18 @@ function Header(props){
                             </li>
                             <li>
                                 <NavLink to="/cart">Cart</NavLink>
+                            </li>                            
+                            <li>
+                                <a href="">My Acount</a>
                             </li>
                             <li>
-                                <a href="">About Us</a>
+                                <NavLink to="/login">Login</NavLink>
                             </li>
                             <li>
-                                <a href="">Contact Us</a>
+                                <a href="" onClick={props.logOut} test="sagar" test2="Sagar2">Logout</a>
                             </li>
                         </ul>
-                </div>
+                </div> : null}                
             </React.Fragment>
             )
 }
