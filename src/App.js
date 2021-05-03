@@ -15,19 +15,29 @@ function App() {
     e.preventDefault();
 
     localStorage.clear();
+    // const authToken = localStorage.getItem('authToken');
     // props.history.replace('/login');
     // history.replace({ pathname: 'home', search: '?query=abc', state:{isActive: true}});
   }
-
+  const authToken = localStorage.getItem('authToken');
   return (
     <div>
       <Header logOut={logoutHandler} />
+      
+      <Route render={props=>{
+                    if(!authToken) {
+                        return <Redirect to="/login"  component={Login} />
+                    }
+
+                return <props.component />
+                }}
+            />
+
       <Switch>
-        <Route path="/products" component={Products} />
+  <Route path="/products" component={Products} />
         <PrivateRoute path="/cart" component={Cart} />
         <Route path="/login" component={Login} />
-        {/* <Redirect from="/" to="/products"/> */}
-      </Switch>
+       </Switch>
     </div>
   );
 }

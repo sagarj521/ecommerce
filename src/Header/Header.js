@@ -5,8 +5,7 @@ import * as classes from './Header.module.css';
 
 function Header(props){
       
-
-    const isLoggedIn = true;
+    const isLoggedIn = false;
     
     return (<React.Fragment>
             {
@@ -15,6 +14,8 @@ function Header(props){
                             <img src={logo} height="60px" width="60px" />
                         </Link>
                         
+                        {/* <Redirect path="/login" component={Login} /> */}
+
                         <ul className={classes.links}>
                             <li>
                                 <NavLink to="/products" >Products</NavLink>
@@ -31,6 +32,7 @@ function Header(props){
                             <li>
                                 <a href="" onClick={props.logOut} test="sagar" test2="Sagar2">Logout</a>
                             </li>
+
                         </ul>
                 </div> : null}                
             </React.Fragment>
