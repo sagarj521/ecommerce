@@ -2,6 +2,8 @@
 import { Redirect, Route, Switch } from 'react-router';
 import './App.css';
 import Cart from './Cart/Cart';
+import Details from './Details/Details';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 import Header from './Header/Header';
 import Login from './Login/Login';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
@@ -22,10 +24,27 @@ function App() {
   return (
     <div>
       <Header logOut={logoutHandler} />
+      
+      <ErrorBoundary>
+        <Details name="sagar" />
+      </ErrorBoundary> 
+      <ErrorBoundary>
+        <Details name="kajal" />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <Details name="ekta" />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <Details name="bhavana" />
+      </ErrorBoundary>
+      
+
       <Switch>
         <Route path="/products" component={Products} />
         <PrivateRoute path="/cart" component={Cart} />
         <Route path="/login" component={Login} />
+        <Route path="/product-details" component={Details} />
+        
         {/* <Redirect from="/" to="/products"/> */}
       </Switch>
     </div>
