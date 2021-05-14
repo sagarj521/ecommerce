@@ -3,18 +3,8 @@
     justify-content: space-between;
     padding: 5px;
     border-bottom: 2px solid whitesmoke;
-  
-  }
-
-  .links{    
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    
-  }
-
-  .links li{
-    display: flex;
-    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: whitesmoke;
   }

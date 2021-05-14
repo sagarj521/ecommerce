@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import * as classes from './Products.module.css';
 
@@ -16,7 +17,7 @@ class Products extends Component {
     */    
     constructor(props) {
         super(props);
-        console.log("constructor");
+        // console.log("constructor");
 
         this.state = {
             products: null
@@ -25,16 +26,16 @@ class Products extends Component {
 
     componentDidMount() {
         this.getProducts();        
-        console.log("componentDidMount");
+        // console.log("componentDidMount");
     }
 
     shouldComponentUpdate() {
-        console.log("shouldComponentUpdate");
+        // console.log("shouldComponentUpdate");
         return true;
     }
 
     componentWillUnmount() {
-        console.log("componentWillUnmount");
+        // console.log("componentWillUnmount");
     }
 
 
@@ -56,20 +57,22 @@ class Products extends Component {
     }
     
     render() {
-        console.log('render')
+        // console.log('render')
         return (
                 <React.Fragment>
                     <ErrorBoundary>
                         <div className={classes.cardsList}>  
                         {this.state.products?this.state.products.map((prod)=>{                         
-                            return <div className={classes.card} key={prod.cakeid} onClick={()=>this.detailsHandler(prod.cakeid)}>
-                                        <div className={classes.card_image}>
-                                            <img src={prod.image} /> 
-                                        </div>
-                                        <div className={classes.card_title}>                            
-                                            <p>{prod.name}</p>
-                                        </div>
-                                    </div>        
+                            return <Link to={"/product-details/"+prod.cakeid} key={prod.cakeid}>
+                                        <div className={classes.card}>
+                                            <div className={classes.card_image}>
+                                                <img src={prod.image} /> 
+                                            </div>
+                                            <div className={classes.card_title}>                            
+                                                <p>{prod.name}</p>
+                                            </div>
+                                        </div>    
+                                    </Link>    
                         }): null}  
                         </div>
                     </ErrorBoundary>

@@ -1,38 +1,18 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../src/assets/img/logo.png';
+import Navigation from '../Navigation/Navigation';
 import * as classes from './Header.module.css';
 
 function Header(props){
-      
-
-    const isLoggedIn = true;
     
     return (<React.Fragment>
-            {
-            isLoggedIn?<div className={classes.header}>
+            <div className={classes.header}>
                         <Link to="/">
                             <img src={logo} height="60px" width="60px" />
                         </Link>
-                        
-                        <ul className={classes.links}>
-                            <li>
-                                <NavLink to="/products" >Products</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/cart">Cart</NavLink>
-                            </li>                            
-                            <li>
-                                <a href="">My Acount</a>
-                            </li>
-                            <li>
-                                <NavLink to="/login">Login</NavLink>
-                            </li>
-                            <li>
-                                <a href="" onClick={props.logOut} test="sagar" test2="Sagar2">Logout</a>
-                            </li>
-                        </ul>
-                </div> : null}                
+                        <Navigation />                       
+                </div> 
             </React.Fragment>
             )
 }

@@ -1,9 +1,19 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
+import { useHistory } from 'react-router';
+import AuthContext from '../Context/auth-context';
 
 const Login = (props)=>{
 
+    const auth = useContext(AuthContext);
+    const history = useHistory();
+
+    useEffect(()=>{
+        if(auth.isLoggedIn) {
+            history.push('/products');
+        }
+    }, []);
     // let [name, setName] =  useState("");
     // let [password, setPassword]  = useState("");
 
@@ -17,13 +27,15 @@ const Login = (props)=>{
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
    
     const loginHandler = (data)=>{
-                            console.log(data);
                             axios.post("http://c365b9f13b87.ngrok.io/api/v1/auth/login",data)
                                  .then(result=>{
-                                    localStorage.setItem('authToken', result.data.data.token);
-                                    props.history.push('/products');
+                                    localStorage.setItem('authToken', result.data.data.token);                                    
+                                    auth.handleLogin();
+                                   
                                  })
                                  .catch(error=>{
+                                    localStorage.setItem('authToken', "somedummy token here");                                    
+                                    auth.handleLogin();
                                      console.log("error",error);
                                  })
                         }

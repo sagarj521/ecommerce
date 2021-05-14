@@ -1,7 +1,9 @@
 
-import { Redirect, Route, Switch } from 'react-router';
+import { useEffect, useState } from 'react';
+import { Redirect, Route, Switch, useHistory } from 'react-router';
 import './App.css';
 import Cart from './Cart/Cart';
+import AuthContext from './Context/auth-context';
 import Details from './Details/Details';
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 import Header from './Header/Header';
@@ -11,21 +13,41 @@ import Products from './Products/Products';
 
 function App() {
 
-  const logoutHandler = (e) => {
-    console.log("in",e.target.attributes.test.nodeValue);
-    console.log("in",e.target.attributes.test.nodeValue);
-    e.preventDefault();
+  const history = useHistory();
 
+  const [isAuthenticated, setAuthentication] = useState(false);
+
+  useEffect(()=>{
+    const authToken = localStorage.getItem('authToken');
+    
+    if( authToken != null) {
+      setAuthentication(true);
+    }
+  }, []);
+
+  const afterLogin = () => {
+    console.log("after login");
+    setAuthentication(true);
+    history.push('/products');
+  };
+  
+  const afterLogout = () => {
+    console.log("after logout");
     localStorage.clear();
-    // props.history.replace('/login');
-    // history.replace({ pathname: 'home', search: '?query=abc', state:{isActive: true}});
+    setAuthentication(false);
+    history.push('/login');
   }
 
   return (
-    <div>
-      <Header logOut={logoutHandler} />
+    <AuthContext.Provider value={{
+      isLoggedIn: isAuthenticated,
+      handleLogin: afterLogin,
+      handleLogout: afterLogout,
+  }}>
+
+      <Header />
       
-      <ErrorBoundary>
+      {/* <ErrorBoundary>
         <Details name="sagar" />
       </ErrorBoundary> 
       <ErrorBoundary>
@@ -36,18 +58,18 @@ function App() {
       </ErrorBoundary>
       <ErrorBoundary>
         <Details name="bhavana" />
-      </ErrorBoundary>
+      </ErrorBoundary> */}
       
 
       <Switch>
         <Route path="/products" component={Products} />
         <PrivateRoute path="/cart" component={Cart} />
         <Route path="/login" component={Login} />
-        <Route path="/product-details" component={Details} />
+        <Route path="/product-details/:cakeid" component={Details} />
         
         {/* <Redirect from="/" to="/products"/> */}
       </Switch>
-    </div>
+    </AuthContext.Provider>
   );
 }
 
