@@ -1,40 +1,69 @@
 .details{
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 15px;
     display: flex;
-    justify-content: space-around;
 }
-.img_sec{
-
+.leftColumn {
+    width: 46%;
+    position: relative;
 }
-.img_sec img{
-    width: 600px;
-    height: 300px;
-    object-fit: cover;
+.leftColumn img {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    /* opacity: 0; */
+    transition: all 0.3s ease;
+    border-radius: 10px;
 }
-
-.content{
-    
+.rightColumn {
+    width: 46%;
+    margin: 0 3rem;
 }
-
-.addTOButton {
-	box-shadow: 8px 11px 18px -6px #276873;
-    background: linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
-    background-color: #599bb3;
-    border-radius: 8px;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: Arial;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 8px 23px;
+.productDescription {
+    border-bottom: 1px solid #E1E8EE;
+    margin-bottom: 20px;
+}
+.productDescription span {
+    font-size: 12px;
+    color: #358ED7;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     text-decoration: none;
-    text-shadow: 0px 1px 0px #3d768a;
 }
-.addTOButton:hover {
-	background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
-	background-color:#408c99;
+.productDescription h1 {
+    font-weight: 300;
+    font-size: 52px;
+    color: #43484D;
+    letter-spacing: -2px;
 }
-.addTOButton:active {
-	position:relative;
-	top:1px;
+.productDescription p, .ingredients p {
+    font-size: 16px;
+    font-weight: 300;
+    color: #86939E;
+    line-height: 24px;
+}
+.ingredients {
+    border-bottom: 1px solid #E1E8EE;
+    margin-bottom: 20px;
+}
+.ingredientssec, .flavour{
+    margin: 20px 0;
+}
+.ingredientssec button {
+    border: 2px solid #E1E8EE;
+    border-radius: 6px;
+    padding: 13px 20px;
+    font-size: 14px;
+    color: #5E6977;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all .5s;
+}
+.ingredientssec button:hover,
+.ingredientssec button:active,
+.ingredientssec button:focus {
+  border: 2px solid #86939E;
+  outline: none;
 }

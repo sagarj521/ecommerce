@@ -1,8 +1,9 @@
 import axios from 'axios';
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import * as classes from './Products.module.css';
+import Loader from '../Loader/Loader';
 
 class Products extends Component {
 
@@ -25,6 +26,7 @@ class Products extends Component {
     }
 
     componentDidMount() {
+       
         this.getProducts();        
         // console.log("componentDidMount");
     }
@@ -63,17 +65,17 @@ class Products extends Component {
                     <ErrorBoundary>
                         <div className={classes.cardsList}>  
                         {this.state.products?this.state.products.map((prod)=>{                         
-                            return <Link to={"/product-details/"+prod.cakeid} key={prod.cakeid}>
-                                        <div className={classes.card}>
-                                            <div className={classes.card_image}>
-                                                <img src={prod.image} /> 
-                                            </div>
-                                            <div className={classes.card_title}>                            
-                                                <p>{prod.name}</p>
-                                            </div>
-                                        </div>    
-                                    </Link>    
-                        }): null}  
+                            return <div className={classes.card} key={prod.cakeid}>
+                                        <div className={classes.card_image}>
+                                            <img src={prod.image} /> 
+                                        </div>
+                                        <div className={classes.card_title}>                            
+                                        <Link to={"/product-details/"+prod.cakeid}>
+                                            <p>{prod.name}</p>
+                                        </Link>   
+                                        </div>
+                                    </div>                                         
+                        }): <Loader />}  
                         </div>
                     </ErrorBoundary>
                 </React.Fragment>

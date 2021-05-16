@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Redirect, Route } from 'react-router';
+import AuthContext from '../Context/auth-context';
 
 const PrivateRoute = (props) => {
-    const authToken = localStorage.getItem('authToken');
+    const auth = useContext(AuthContext);
 
     return (
         <React.Fragment>
             <Route render={prop=>{
-                    if(!authToken) {
+                    if(!auth.isLoggedIn) {
                         return <Redirect to="/login"/>
                     }
 

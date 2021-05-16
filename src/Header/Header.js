@@ -8,10 +8,12 @@ function Header(props){
     
     return (<React.Fragment>
             <div className={classes.header}>
-                        <Link to="/">
-                            <img src={logo} height="60px" width="60px" />
-                        </Link>
-                        <Navigation />                       
+                <div className={classes.brand_name}>
+                    <Link to="/">
+                        Sweet Cakes
+                    </Link>
+                </div>
+                    <Navigation />                       
                 </div> 
             </React.Fragment>
             )

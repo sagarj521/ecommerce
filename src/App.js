@@ -24,7 +24,7 @@ function App() {
       setAuthentication(true);
     }
   }, []);
-
+  
   const afterLogin = () => {
     console.log("after login");
     setAuthentication(true);

@@ -36,7 +36,7 @@ const Navigation = (props) => {
                 )}                        
                 { auth.isLoggedIn && (
                     <li>
-                        <a href="javascript:void(0)" onClick={auth.handleLogout}>Logout</a>
+                        <a href="#" onClick={auth.handleLogout}>Logout</a>
                     </li>
                 )}                        
             </ul>

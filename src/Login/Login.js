@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router';
 import AuthContext from '../Context/auth-context';
@@ -8,11 +8,14 @@ const Login = (props)=>{
 
     const auth = useContext(AuthContext);
     const history = useHistory();
-
+    const focus = useRef();
+    const colorChange = useRef();
+        
     useEffect(()=>{
         if(auth.isLoggedIn) {
             history.push('/products');
         }
+        focus.current.focus();
     }, []);
     // let [name, setName] =  useState("");
     // let [password, setPassword]  = useState("");
@@ -45,7 +48,14 @@ const Login = (props)=>{
             <form onSubmit={handleSubmit(loginHandler)}>
                     <h1>Sign In</h1>
                     <div className="row">
-                        <input type="text" placeholder="Email" {...register("email",{ required: true, pattern:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i })}/>
+                        <input type="text" 
+                               placeholder="Email" 
+                               {...register("email",
+                                    { required: true, 
+                                    pattern:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i })
+                                }
+                                ref={focus}
+                                />
                         {errors.email && "Valid Email is required"}
                     </div>
                     <div className="row">
